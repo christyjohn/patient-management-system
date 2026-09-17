@@ -253,3 +253,77 @@ KAFKA_PROCESS_ROLES=broker,controller
 KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=1
 KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
 ```
+
+## Analytics Service
+---
+
+### Protobuf/Kafka
+
+Dependencies (add in addition to whats there)
+
+```xml
+<dependency>
+    <groupId>org.springframework.kafka</groupId>
+    <artifactId>spring-kafka</artifactId>
+    <version>3.3.0</version>
+</dependency>
+
+<dependency>
+    <groupId>com.google.protobuf</groupId>
+    <artifactId>protobuf-java</artifactId>
+    <version>4.29.1</version>
+</dependency>
+```
+
+Update the build section in pom.xml with the following
+
+```xml
+<build>
+    <extensions>
+        <!-- Ensure OS compatibility for protoc -->
+        <extension>
+            <groupId>kr.motd.maven</groupId>
+            <artifactId>os-maven-plugin</artifactId>
+            <version>1.7.0</version>
+        </extension>
+    </extensions>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+
+        <plugin>
+            <groupId>org.xolstice.maven.plugins</groupId>
+            <artifactId>protobuf-maven-plugin</artifactId>
+            <version>0.6.1</version>
+            <configuration>
+                <protocArtifact>com.google.protobuf:protoc:3.25.5:exe:${os.detected.classifier}</protocArtifact>
+                <pluginId>grpc-java</pluginId>
+                <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.68.1:exe:${os.detected.classifier}</pluginArtifact>
+            </configuration>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>compile</goal>
+                        <goal>compile-custom</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+```
+
+Create Docker run configuration from IntelliJ
+
+- Dockerfile: analytics-service\Dockerfile
+- Image tag: analytics-service:latest
+- Container name: analytics-service
+- Bind Ports: 4002:4002
+- Run options: --network internal
+- Environment variables: 
+
+```
+SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+```
