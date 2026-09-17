@@ -5,7 +5,7 @@
 ## Technologies involved
 
 - Java 21
-- Spring Boot 4.1.1
+- Spring Boot 3.4.x
 - Maven
 - H2
 - PostgreSQL
