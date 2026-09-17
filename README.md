@@ -219,6 +219,8 @@ Replace the <build> section with the following
 
 ## Kafka Setup
 
+Use ```apache:kafka:latest```
+
 Copy/paste this line into the environment variables when running the container in intellij
 
 ```
