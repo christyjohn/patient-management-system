@@ -327,3 +327,14 @@ Create Docker run configuration from IntelliJ
 ```
 SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
 ```
+
+## API Gateway
+---
+
+Set up run configurations with the following details for Dockerfile type in IntelliJ
+
+- Dockerfile: analytics-service\Dockerfile
+- Image tag: api-gateway:latest
+- Container name: api-gateway
+- Bind Ports: 4004:4004
+- Run options: --network internal
