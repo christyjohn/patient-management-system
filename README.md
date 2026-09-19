@@ -51,6 +51,8 @@ SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092;
 SPRING_SQL_INIT_MODE=always
 ```
 
+*Small caveat: Once API Gatway is up we will remove the bind ports*
+
 ### gRPC Setup
 ---
 Add the following to the <dependencies> section
