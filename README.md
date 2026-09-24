@@ -340,3 +340,22 @@ Set up run configurations with the following details for Dockerfile type in Inte
 - Container name: api-gateway
 - Bind Ports: 4004:4004
 - Run options: --network internal
+
+## Auth Service
+
+Set up run configuration with the following details for Dockerfile type in IntelliJ
+
+- Dockerfile: auth-service\Dockerfile
+- Image tag: auth-service:latest
+- Container name: auth-service
+- Bind Ports: 4005:4005
+- Run options: --network internal
+- Environment Variables
+
+```
+SPRING_DATASOURCE_PASSWORD=password
+SPRING_DATASOURCE_URL=jdbc:postgresql://auth-service-db:5432/db
+SPRING_DATASOURCE_USERNAME=admin_user
+SPRING_JPA_HIBERNATE_DDL_AUTO=update
+SPRING_SQL_INIT_MODE=always
+```
