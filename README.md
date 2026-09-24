@@ -358,4 +358,5 @@ SPRING_DATASOURCE_URL=jdbc:postgresql://auth-service-db:5432/db
 SPRING_DATASOURCE_USERNAME=admin_user
 SPRING_JPA_HIBERNATE_DDL_AUTO=update
 SPRING_SQL_INIT_MODE=always
+JWT_SECRET=9c2ecef1916ccededc2bb3b3e74314be7a15f458c9e983a24a683ef72394f8c2 (some random string)
 ```
